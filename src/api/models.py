@@ -23,7 +23,6 @@ class TokenBlockedList(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     jti=db.Column(db.String(50), unique=True, nullable=False)
 
-
     def __repr__(self):
         return f'TokenBlockedList {self.jti}>'
 

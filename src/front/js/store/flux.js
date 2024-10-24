@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-
+			user: {},
+			auth: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -20,9 +21,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					const data = await resp.json()
 					console.log(data)
+					localStorage.setItem("token", data.token)
+					setStore({ user: data.user, auth: true })
 					// setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
-					return data;
+					return true;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+				}
+			},
+			logout: () => {
+				localStorage.removeItem("token")
+				setStore({ auth: false })
+			},
+
+			sign_up: async (email, password) => {
+				try {
+					// fetching data from the backend
+					await fetch(process.env.BACKEND_URL + "api/signup", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							email: email,
+							password: password
+						})
+					})
+					return true;
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}

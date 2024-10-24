@@ -47,7 +47,11 @@ def Login_user():
         return jsonify({"msg":"credenciales incorrectas"}), 401
         # return jsonify({"msg": "Credenciales Incorrectas"}), 401
     token=create_access_token(identity=user.id)
-    return jsonify({"token":token})
+    response_body={
+        "token":token,
+        "user":user.serialize()
+    }
+    return jsonify(response_body), 200
 
 @api.route('/signup', methods=['POST'])
 def signup_user():
