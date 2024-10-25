@@ -14,7 +14,7 @@ export const Navbar = () => {
 					{store.auth == false ?
 						<>
 							<Link to="/">
-								<button className="btn btn-outline-success mx-3">login</button>
+								<button className="btn btn-outline-success mx-3">Login</button>
 							</Link>
 							<Link to="/single">
 								<button className="btn btn-outline-success">Sign_up</button>
@@ -22,7 +22,7 @@ export const Navbar = () => {
 						</>
 						:
 						<Link to="/">
-							<button className="btn btn-outline-danger mx-3" onClick={actions.logout}>Logout</button>
+							<button className="btn btn-outline-success mx-3" onClick={actions.log_out}>Log_out</button>
 						</Link>
 					}
 				</div>

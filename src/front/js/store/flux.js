@@ -30,7 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
-			logout: () => {
+			log_out: () => {
 				localStorage.removeItem("token")
 				setStore({ auth: false })
 			},
