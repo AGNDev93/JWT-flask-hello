@@ -19,6 +19,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 							password: password
 						})
 					})
+					if (resp.status == 401) {
+						return false
+					}
 					const data = await resp.json()
 					console.log(data)
 					localStorage.setItem("token", data.token)
@@ -28,6 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return true;
 				} catch (error) {
 					console.log("Error loading message from backend", error)
+					return false
 				}
 			},
 			log_out: () => {

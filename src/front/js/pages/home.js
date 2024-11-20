@@ -15,6 +15,8 @@ export const Home = () => {
 		let rsp = await actions.getLogin(email, password)
 		if (rsp) {
 			navigate("/demo")
+		} else {
+			alert("Error de ingreso")
 		}
 	}
 	return (
